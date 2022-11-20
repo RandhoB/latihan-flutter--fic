@@ -5,6 +5,9 @@ import '../controller/ltsm_counter_controller.dart';
 class LtsmCounterView extends StatefulWidget {
   const LtsmCounterView({Key? key}) : super(key: key);
 
+  @override
+  State<LtsmCounterView> createState() => LtsmCounterController();
+
   Widget build(context, LtsmCounterController controller) {
     controller.view = this;
 
@@ -17,7 +20,7 @@ class LtsmCounterView extends StatefulWidget {
         child: Container(
           padding: const EdgeInsets.all(10.0),
           child: Column(
-            children: const [
+            children: [
               /*
               ? 1. ambil variabel counter, tampilkan ke dalam text
               ! controller.counter lalu tampilkan di dalam Text("")
@@ -26,13 +29,22 @@ class LtsmCounterView extends StatefulWidget {
               ! ketika di klik, panggil fungsi updateCounter()
               ! contoh: controller.updateCounter();
               */
+              Text(
+                "${controller.counter}",
+                style: const TextStyle(
+                  fontSize: 50.0,
+                ),
+              ),
+              ElevatedButton(
+                  onPressed: () {
+                    controller.updateCounter();
+                    controller.setState(() {});
+                  },
+                  child: const Text('Update Counter'))
             ],
           ),
         ),
       ),
     );
   }
-
-  @override
-  State<LtsmCounterView> createState() => LtsmCounterController();
 }

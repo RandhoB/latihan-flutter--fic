@@ -10,7 +10,20 @@ class LtfmProductFormView extends StatefulWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("LtfmProductForm"),
-        actions: const [
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: ElevatedButton.icon(
+              icon: const Icon(Icons.save),
+              label: const Text("Save"),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blueGrey,
+              ),
+              onPressed: () {
+                controller.save();
+              },
+            ),
+          ),
           //! 5. Tambahkan tombol Save
           //! 6. Beri padding/margin pada tombol Save sebanyak 10
           //! 7. Panggil controller.save() ketika tombol di klik
@@ -20,7 +33,72 @@ class LtfmProductFormView extends StatefulWidget {
         child: Container(
           padding: const EdgeInsets.all(10.0),
           child: Column(
-            children: const [
+            children: [
+              Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    children: [
+                      QTextField(
+                        label: "Name",
+                        hint: "Name",
+                        validator: Validator.required,
+                        value: "John Doe",
+                        onChanged: (value) {},
+                      ),
+                      QNumberField(
+                        label: "Age",
+                        hint: "Your age's",
+                        validator: Validator.required,
+                        value: "24",
+                        onChanged: (value) {},
+                      ),
+                      QMemoField(
+                        label: "Address",
+                        hint: "Your addresses",
+                        validator: Validator.required,
+                        value: "Kamboja street 16, Bogor, West Java, Indonesia",
+                        onChanged: (value) {},
+                      ),
+                      QDropdownField(
+                        label: "Category",
+                        hint: "Your product category",
+                        validator: Validator.required,
+                        items: const [
+                          {
+                            "label": "Food",
+                            "value": 1,
+                          },
+                          {
+                            "label": "Drink",
+                            "value": 2,
+                          },
+                          {
+                            "label": "Main Course",
+                            "value": 3,
+                          }
+                        ],
+                        onChanged: (value, label) {},
+                      ),
+                      QRadioField(
+                        label: "Status",
+                        validator: Validator.atLeastOneitem,
+                        items: const [
+                          {
+                            "label": "Published",
+                            "value": "published",
+                          },
+                          {
+                            "label": "Draft",
+                            "value": "draft",
+                          }
+                        ],
+                        onChanged: (value, label) {},
+                      ),
+                    ],
+                  ),
+                ),
+              )
               //! 1. Buat sebuah Card, tambahkan Column di dalamnya
               //! 2. Tambahkan padding.all 20.0
               //! 3. Di dalam column yang ada di dalam Card, tambahkan field ini:

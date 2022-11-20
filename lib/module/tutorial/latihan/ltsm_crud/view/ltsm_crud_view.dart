@@ -21,7 +21,7 @@ class LtsmCrudView extends StatefulWidget {
           // jgn lupa panggil setState setelah-nya
           /*
           */
-          Map newProduct = {
+          controller.products.add({
             "photo":
                 "https://i.ibb.co/dG68KJM/photo-1513104890138-7c749659a591-crop-entropy-cs-tinysrgb-fit-max-fm-jpg-ixid-Mnwy-ODA4-ODh8-MHwxf-H.jpg",
             "product_name": "New Product",
@@ -29,7 +29,8 @@ class LtsmCrudView extends StatefulWidget {
             "category": "Food",
             "description":
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-          };
+          });
+          controller.setState(() {});
         },
       ),
       body: Container(
@@ -47,7 +48,10 @@ class LtsmCrudView extends StatefulWidget {
                   //panggil kode itu di dalam event onTap()
                   // jgn lupa panggil setState setelah-nya
                   return InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      controller.products.remove(item);
+                      controller.setState(() {});
+                    },
                     child: Card(
                       child: ListTile(
                         leading: CircleAvatar(
@@ -64,6 +68,8 @@ class LtsmCrudView extends StatefulWidget {
                             //gunakan kode ini:
                             // item["price"] = 44;
                             // jgn lupa panggil setState setelah-nya
+                            item["price"] = 44;
+                            controller.setState(() {});
                           },
                           icon: const Icon(
                             Icons.edit,
